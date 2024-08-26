@@ -1,7 +1,6 @@
+import 'package:attempt/attempt.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/model/menu.dart';
-import '../../core/widget/app_nav_bar.dart';
 
 class AppNavigation extends StatelessWidget {
   final Widget child;

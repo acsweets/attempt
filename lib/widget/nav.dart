@@ -1,44 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../model/menu.dart';
+import '../model/model.dart';
 
-class Nav extends StatelessWidget {
-  final Menu menu;
-  final Color? selectColor;
-  final double menuRadius;
-  final double margin;
-  final TextStyle? labelStyle;
-
-  const Nav(
-      {super.key,
-      required this.menu,
-      this.selectColor,
-      this.labelStyle,
-      this.menuRadius = 10,
-      this.margin = 5});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: selectColor,
-        borderRadius: BorderRadius.circular(menuRadius),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (menu.icon != null) menu.icon!,
-          Text(
-            menu.label,
-            style: labelStyle ?? const TextStyle(color: Colors.white),
-          )
-        ],
-      ),
-    );
-  }
-}
-
+///简单封装了下TabBar
 class NavBar extends StatefulWidget {
   final List<Menu> menus;
   final Color tabColor;
@@ -47,10 +11,10 @@ class NavBar extends StatefulWidget {
 
   const NavBar(
       {super.key,
-      required this.menus,
-      this.tabColor = Colors.blue,
-      this.menuRadius = 10,
-      this.margin = 5});
+        required this.menus,
+        this.tabColor = Colors.blue,
+        this.menuRadius = 10,
+        this.margin = 5});
 
   @override
   State<NavBar> createState() => _NavBarState();
@@ -90,14 +54,15 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
       onTap: (i) {
         setState(() {});
       },
-//label 的内边距
+
+      ///label 的内边距
       labelPadding: EdgeInsets.zero,
       indicator: BoxDecoration(
           border: Border.all(width: 0.5, color: Colors.transparent)),
       indicatorPadding: EdgeInsets.zero,
       splashBorderRadius: BorderRadius.circular(widget.menuRadius),
       overlayColor: WidgetStateProperty.resolveWith<Color?>(
-        (Set<WidgetState> states) {
+            (Set<WidgetState> states) {
           if (states.contains(WidgetState.hovered)) {
             return widget.tabColor.withOpacity(0.2);
           }
@@ -113,3 +78,41 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
     );
   }
 }
+
+class Nav extends StatelessWidget {
+  final Menu menu;
+  final Color? selectColor;
+  final double menuRadius;
+  final double margin;
+  final TextStyle? labelStyle;
+
+  const Nav(
+      {super.key,
+      required this.menu,
+      this.selectColor,
+      this.labelStyle,
+      this.menuRadius = 10,
+      this.margin = 5});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: selectColor,
+        borderRadius: BorderRadius.circular(menuRadius),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (menu.icon != null) menu.icon!,
+          Text(
+            menu.label,
+            style: labelStyle ?? const TextStyle(color: Colors.white),
+          )
+        ],
+      ),
+    );
+  }
+}
+

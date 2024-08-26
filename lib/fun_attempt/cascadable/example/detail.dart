@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../cascadable/cascadable_notifier.dart';
-import 'animation_list.dart';
-import 'demo2.dart';
+import '../../fun_attempt.dart';
 
 class SelectableItemsScreen extends StatefulWidget {
   const SelectableItemsScreen({super.key});

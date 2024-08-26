@@ -1,9 +1,6 @@
-import 'package:attempt/core/routes/routes_path.dart';
+import 'package:attempt/attempt.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../page/home/detail.dart';
-import '../widget/app_navigation.dart';
-
 RouteBase get routes => GoRoute(
       path: AppRoutes.root.name,
       redirect: _widgetHome,

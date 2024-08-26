@@ -24,7 +24,7 @@ class _AnimatedListExampleState extends State<AnimatedListExample> {
     _listKey.currentState!.removeItem(
       index,
           (context, animation) => _buildItem(removedItem, animation),
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
     );
   }
 

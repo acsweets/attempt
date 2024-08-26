@@ -1,8 +1,6 @@
+import 'package:attempt/attempt.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../model/menu.dart';
-import 'nav.dart';
 
 class AppNavBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Menu> menus;
@@ -15,7 +13,7 @@ class AppNavBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: kToolbarHeight,
           child: NavigationToolbar(
             leading: logo,

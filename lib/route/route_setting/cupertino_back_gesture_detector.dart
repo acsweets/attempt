@@ -40,7 +40,7 @@ class CupertinoBackGestureDetector<T> extends StatefulWidget {
   final ValueGetter<CupertinoBackGestureController<T>> onStartPopGesture;
 
   @override
-  _CupertinoBackGestureDetectorState<T> createState() => _CupertinoBackGestureDetectorState<T>();
+ createState() => _CupertinoBackGestureDetectorState<T>();
 }
 
 class _CupertinoBackGestureDetectorState<T> extends State<CupertinoBackGestureDetector<T>> {
@@ -224,8 +224,6 @@ CupertinoBackGestureController<T> startPopGesture<T>(PageRoute<T> route) {
 }
 
 bool isPopGestureEnabled<T>(PageRoute<T> route) {
-  print(
-      "======_isPopGestureEnabled:${route.hasScopedWillPopCallback}=========");
 // If there's nothing to go back to, then obviously we don't support
 // the back gesture.
   if (route.isFirst) {
