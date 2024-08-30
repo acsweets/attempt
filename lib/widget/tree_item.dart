@@ -1,6 +1,5 @@
 import 'package:attempt/attempt.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 
 typedef OnSelectMenu = void Function(
   String id,
@@ -40,10 +39,7 @@ class _MenusTreeState extends State<MenusTree> {
           ),
           child: TreeItem(
             onSelect: (id) {
-              if (id == menus[i].id) {
-                _select = true;
-                setState(() {});
-              }
+
             },
             select: _select,
             menus: menus[i],
@@ -91,13 +87,13 @@ class _TreeItemState extends State<TreeItem> {
             shape: WidgetStateProperty.all(
                 BeveledRectangleBorder(borderRadius: BorderRadius.circular(2))),
             overlayColor: ColorUtil.stateColor(),
-            backgroundColor: ColorUtil.stateAllColor(widget.select
+            backgroundColor: ColorUtil.stateAllColor( widget.menus.select
                 ? ColorUtil.kBaseColor
                 : ColorUtil.kBackgroundColor),
             foregroundColor: ColorUtil.stateAllColor(Colors.blueGrey),
           ),
           onPressed: () {
-            widget.onSelect?.call(widget.menus.id);
+            widget.menus.select = true;
             showChildren = !showChildren;
             context.go(widget.menus.path);
             setState(() {});
@@ -133,17 +129,17 @@ class _TreeItemState extends State<TreeItem> {
 }
 
 class MenuNode {
-  String id;
-  String label;
-  IconData? icon;
-  String path;
-  List<MenuNode> children;
+  bool select;
+  final String label;
+  final IconData? icon;
+  final String path;
+  final List<MenuNode> children;
 
   MenuNode(this.label,
       {this.path = '/404',
       this.icon,
       required this.children,
-      required this.id});
+      this.select = false});
 
   factory MenuNode.formMap(Map<String, dynamic> map) {
     return MenuNode(
@@ -153,7 +149,6 @@ class MenuNode {
       children: map['children'] == null
           ? []
           : (map['children'] as List).map((e) => MenuNode.formMap(e)).toList(),
-      id: const Uuid().v4(),
     );
   }
 }
