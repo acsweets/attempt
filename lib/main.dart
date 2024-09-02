@@ -1,6 +1,4 @@
 import 'package:attempt/attempt.dart';
-import 'package:attempt/widget/at_button.dart';
-import 'package:attempt/widget/tree_item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -26,10 +24,8 @@ class _MyAppState extends State<MyApp> {
       }
       // router.go('/$parent/404', extra: state.uri.toString());
       router.go('/404', extra: state.uri.toString());
-
     },
   );
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +34,13 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadePageTransitionsBuilder(),
+            TargetPlatform.iOS: FadePageTransitionsBuilder(),
+            TargetPlatform.windows: FadePageTransitionsBuilder(),
+          },
+        ),
       ),
       routerConfig: _router,
     );

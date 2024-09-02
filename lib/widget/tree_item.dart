@@ -1,9 +1,11 @@
 import 'package:attempt/attempt.dart';
 import 'package:flutter/material.dart';
 
-typedef OnSelectMenu = void Function(
-  String id,
-);
+import '../model/menu/menu_node.dart';
+import '../model/menu/menu_state.dart';
+import '../utils/config.dart';
+
+typedef OnSelectMenu = void Function();
 
 class MenusTree extends StatefulWidget {
   final List<MenuNode>? menus;
@@ -24,8 +26,6 @@ class _MenusTreeState extends State<MenusTree> {
     super.initState();
   }
 
-  bool _select = false;
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -38,10 +38,6 @@ class _MenusTreeState extends State<MenusTree> {
             borderRadius: BorderRadius.circular(2),
           ),
           child: TreeItem(
-            onSelect: (id) {
-
-            },
-            select: _select,
             menus: menus[i],
             depth: widget.depth + 1,
           ),
@@ -53,7 +49,8 @@ class _MenusTreeState extends State<MenusTree> {
   }
 
   Future<void> parseMenus() async {
-    menus = widget.menus ?? appMenus.map((e) => MenuNode.formMap(e)).toList();
+    menus = widget.menus ??
+        Config.appMenus.map((e) => MenuNode.fromMap(e)).toList();
   }
 }
 
@@ -61,19 +58,19 @@ class TreeItem extends StatefulWidget {
   final MenuNode menus;
   final int depth;
   final OnSelectMenu? onSelect;
-  final bool select;
 
   const TreeItem({
     super.key,
     required this.menus,
     this.depth = 0,
     this.onSelect,
-    this.select = false,
   });
 
   @override
   State<TreeItem> createState() => _TreeItemState();
 }
+
+MenuState menuState = MenuState();
 
 class _TreeItemState extends State<TreeItem> {
   bool showChildren = false;
@@ -87,16 +84,18 @@ class _TreeItemState extends State<TreeItem> {
             shape: WidgetStateProperty.all(
                 BeveledRectangleBorder(borderRadius: BorderRadius.circular(2))),
             overlayColor: ColorUtil.stateColor(),
-            backgroundColor: ColorUtil.stateAllColor( widget.menus.select
+            backgroundColor: ColorUtil.stateAllColor(widget.menus.select
                 ? ColorUtil.kBaseColor
                 : ColorUtil.kBackgroundColor),
             foregroundColor: ColorUtil.stateAllColor(Colors.blueGrey),
           ),
           onPressed: () {
-            widget.menus.select = true;
-            showChildren = !showChildren;
-            context.go(widget.menus.path);
-            setState(() {});
+            setState(() {
+              menuState.selectNode(widget.menus);
+              showChildren = !showChildren;
+              context.go(widget.menus.path);
+            });
+            widget.onSelect?.call();
           },
           child: Row(
             children: [
@@ -127,91 +126,3 @@ class _TreeItemState extends State<TreeItem> {
     );
   }
 }
-
-class MenuNode {
-  bool select;
-  final String label;
-  final IconData? icon;
-  final String path;
-  final List<MenuNode> children;
-
-  MenuNode(this.label,
-      {this.path = '/404',
-      this.icon,
-      required this.children,
-      this.select = false});
-
-  factory MenuNode.formMap(Map<String, dynamic> map) {
-    return MenuNode(
-      map['label'],
-      icon: map['icon'],
-      path: map['path'],
-      children: map['children'] == null
-          ? []
-          : (map['children'] as List).map((e) => MenuNode.formMap(e)).toList(),
-    );
-  }
-}
-
-const List<Map<String, dynamic>> appMenus = [
-  {
-    'label': '动画',
-    'icon': Icons.animation,
-    'path': '/animation',
-    'children': [
-      {
-        'label': '案例',
-        'path': '/example',
-        'icon': Icons.exposure_rounded,
-        'children': [
-          {
-            'label': '案例 1',
-            'path': '/animation/example/one',
-            'children': [],
-          },
-          {
-            'label': '案例 2',
-            'path': '/animation/example/two',
-            'children': [],
-          },
-        ],
-      },
-      {
-        'label': '知识点',
-        'path': '/knowledge',
-        'icon': Icons.article,
-        'children': [
-          {
-            'label': '知识点 1',
-            'path': '/animation/knowledge/one',
-            'children': [],
-          },
-          {
-            'label': '知识点 2',
-            'path': '/animation/knowledge/two',
-            'children': [],
-          },
-        ],
-      }
-    ],
-  },
-  {
-    'label': '绘制',
-    'icon': Icons.draw,
-    'path': '/draw',
-    'children': [
-      {
-        'label': '案例',
-        'icon': Icons.exposure_rounded,
-        'path': '/draw/example',
-        'children': [
-          {
-            'label': '案例 1',
-            'path': '/draw/example/one',
-            'children': [],
-          },
-        ],
-      }
-    ],
-  }
-];

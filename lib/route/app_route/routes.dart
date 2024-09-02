@@ -1,7 +1,9 @@
 import 'package:attempt/attempt.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../widget/tree_nav.dart';
+import '../transition/page_route/zero_page_route.dart';
 
 RouteBase get routes => GoRoute(
       path: AppRoutes.root.name,
@@ -150,59 +152,6 @@ RouteBase get appRoutes => GoRoute(
               );
             },
             routes: [
-              // ShellRoute(
-              //     builder: (BuildContext context, GoRouterState state,
-              //         Widget child) {
-              //       return Row(
-              //         children: [
-              //           Column(
-              //             children: [
-              //               TextButton(
-              //                   onPressed: () {
-              //                     context.go("/two");
-              //                   },
-              //                   child: Text("two ")),
-              //               TextButton(
-              //                   onPressed: () {
-              //                     context.go("/sth");
-              //                   },
-              //                   child: Text("sth")),
-              //             ],
-              //           ),
-              //           Expanded(child: child),
-              //         ],
-              //       );
-              //     },
-              //     routes: [
-              //       GoRoute(
-              //         path: AppRoutes.home.name,
-              //         builder: (BuildContext context, GoRouterState state) {
-              //           // return HomePage();
-              //           return SelectableItemsScreen();
-              //         },
-              //
-              //       ),
-              //       GoRoute(
-              //         path: "two",
-              //         builder: (BuildContext context, GoRouterState state) {
-              //           return Scaffold(
-              //             appBar: AppBar(
-              //               title: Text("二一级路由"),
-              //             ),
-              //           );
-              //         },
-              //       ),
-              //       GoRoute(
-              //         path: "sth",
-              //         builder: (BuildContext context, GoRouterState state) {
-              //           return Scaffold(
-              //             appBar: AppBar(
-              //               title: Text("二二级路由"),
-              //             ),
-              //           );
-              //         },
-              //       ),
-              //     ]),
               GoRoute(
                 path: AppRoutes.home.name,
                 builder: (BuildContext context, GoRouterState state) {
@@ -220,6 +169,59 @@ RouteBase get appRoutes => GoRoute(
                     body: Center(
                       child: Container(
                         child: Text("动画页"),
+                      ),
+                    ),
+                  );
+                },
+                routes: [
+                  GoRoute(
+                    path: AppRoutes.example.name,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return Scaffold(
+                        appBar: AppBar(
+                          title: Text('例子总页'),
+                        ),
+                      );
+                    },
+                    // redirect: (_, state) {
+                    //   //todo 重定向后为什么会导致不把之前的选中,设置了但是没刷新
+                    //   if (state.fullPath == '/animation/example') {
+                    //     return '/animation/example/one';
+                    //   }
+                    //   return null;
+                    // },
+                    routes: [
+                      GoRoute(
+                        path: AppRoutes.one.name,
+                        builder: (BuildContext context, GoRouterState state) {
+                          return Scaffold(
+                            appBar: AppBar(
+                              title: Text('例子页面1'),
+                            ),
+                          );
+                        },
+                      ),
+                      GoRoute(
+                        path: AppRoutes.two.name,
+                        builder: (BuildContext context, GoRouterState state) {
+                          return Scaffold(
+                            appBar: AppBar(
+                              title: Text('例子页面2'),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: AppRoutes.draw.name,
+                builder: (BuildContext context, GoRouterState state) {
+                  return Scaffold(
+                    body: Center(
+                      child: Container(
+                        child: Text("绘制页"),
                       ),
                     ),
                   );
