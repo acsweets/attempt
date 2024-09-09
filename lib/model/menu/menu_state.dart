@@ -6,7 +6,7 @@ class MenuState {
   // 设置选中节点
   void selectNode(MenuNode newSelectedNode) {
     // 如果有之前的选中节点，取消选中
-    if (_selectedNode != newSelectedNode) {
+    if (_selectedNode != newSelectedNode && newSelectedNode.isLeaf) {
       // 只在节点不同的时候更新状态
       if (_selectedNode != null) {
         _selectedNode!.select = false;
@@ -16,10 +16,10 @@ class MenuState {
     }
   }
 
-  String setRoute(MenuNode selectedNode){
-    if(selectedNode.isLeaf){
+  String setRoute(MenuNode selectedNode) {
+    if (selectedNode.isLeaf) {
       return selectedNode.path;
-    }else{
+    } else {
       return setRoute(selectedNode);
     }
   }

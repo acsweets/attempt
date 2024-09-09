@@ -1,5 +1,7 @@
 import 'package:attempt/attempt.dart';
 import 'package:flutter/material.dart';
+import '../../animation/pages/turnable_page.dart';
+import '../../animation/pages/two_turnable.dart';
 import '../../widget/tree_nav.dart';
 
 RouteBase get appRoutes => GoRoute(
@@ -42,39 +44,31 @@ RouteBase get appRoutes => GoRoute(
                 routes: [
                   GoRoute(
                     path: AppRoutes.example.name,
-                    builder: (BuildContext context, GoRouterState state) {
-                      return Scaffold(
-                        appBar: AppBar(
-                          title: Text('例子总页'),
-                        ),
-                      );
-                    },
-                    // redirect: (_, state) {
-                    //   //todo 重定向后为什么会导致不把之前的选中,设置了但是没刷新
-                    //   if (state.fullPath == '/animation/example') {
-                    //     return '/animation/example/one';
-                    //   }
-                    //   return null;
+                    // builder: (BuildContext context, GoRouterState state) {
+                    //   return Scaffold(
+                    //     appBar: AppBar(
+                    //       title: Text('例子总页'),
+                    //     ),
+                    //   );
                     // },
+                    redirect: (_, state) {
+                      //todo 重定向后为什么会导致不把之前的选中,设置了但是没刷新 ,因为我的刷新没起作用
+                      if (state.fullPath == '/animation/example') {
+                        return '/animation/example/one';
+                      }
+                      return null;
+                    },
                     routes: [
                       GoRoute(
                         path: AppRoutes.one.name,
                         builder: (BuildContext context, GoRouterState state) {
-                          return Scaffold(
-                            appBar: AppBar(
-                              title: Text('例子页面1'),
-                            ),
-                          );
+                          return const TurntablePage();
                         },
                       ),
                       GoRoute(
                         path: AppRoutes.two.name,
                         builder: (BuildContext context, GoRouterState state) {
-                          return Scaffold(
-                            appBar: AppBar(
-                              title: Text('例子页面2'),
-                            ),
-                          );
+                          return SpinningPage();
                         },
                       ),
                     ],

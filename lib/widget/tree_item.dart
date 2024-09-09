@@ -93,7 +93,7 @@ class _TreeItemState extends State<TreeItem> {
             setState(() {
               menuState.selectNode(widget.menus);
               showChildren = !showChildren;
-              context.go(widget.menus.path);
+              if (widget.menus.isLeaf) context.go(widget.menus.path);
             });
             widget.onSelect?.call();
           },
