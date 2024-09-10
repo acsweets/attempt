@@ -1,5 +1,6 @@
 // 定义 Yao 枚举
 import 'dart:math';
+
 enum Yao {
   yin("yin", "阴"),
   yang("yang", "阳");
@@ -23,14 +24,14 @@ enum Yao {
 // 先天序:乾·兑·离·震·巽·坎·艮·坤
 // 后天序:乾·坎·艮·震·巽·离·坤·兑
 enum Gua {
-  qian("qian", "乾", "☰", 1, 1, [Yao.yang, Yao.yang, Yao.yang]),
-  kun("kun", "坤", "☷", 8, 7, [Yao.yin, Yao.yin, Yao.yin]),
-  zhen("zhen", "震", "☳", 4, 4, [Yao.yin, Yao.yin, Yao.yang]),
-  gen("gen", "艮", "☶", 7, 3, [Yao.yang, Yao.yin, Yao.yin]),
-  li("li", "离", "☲", 3, 6, [Yao.yang, Yao.yin, Yao.yang]),
-  kan("kan", "坎", "☵", 6, 2, [Yao.yin, Yao.yang, Yao.yin]),
-  dui("dui", "兑", "☱", 2, 8, [Yao.yin, Yao.yang, Yao.yang]),
-  xun("xun", "巽", "☴", 5, 5, [Yao.yang, Yao.yang, Yao.yin]);
+  qian("qian", "乾", "☰", 1, 1, [Yao.yang, Yao.yang, Yao.yang]), //2 pi
+  kun("kun", "坤", "☷", 8, 7, [Yao.yin, Yao.yin, Yao.yin]), //7pi /4
+  zhen("zhen", "震", "☳", 4, 4, [Yao.yin, Yao.yin, Yao.yang]), // 6pi/4
+  gen("gen", "艮", "☶", 7, 3, [Yao.yang, Yao.yin, Yao.yin]), // 5pi/4
+  li("li", "离", "☲", 3, 6, [Yao.yang, Yao.yin, Yao.yang]), //4pi/4
+  kan("kan", "坎", "☵", 6, 2, [Yao.yin, Yao.yang, Yao.yin]), // 3pi/4
+  dui("dui", "兑", "☱", 2, 8, [Yao.yin, Yao.yang, Yao.yang]), // 2pi/4
+  xun("xun", "巽", "☴", 5, 5, [Yao.yang, Yao.yang, Yao.yin]); // 1pi/4
 
   final String key;
   final String name;
@@ -66,6 +67,9 @@ enum Gua {
         .firstWhere((gua) => gua.yaoList.toString() == yaoList.toString());
   }
 }
+
+
+
 
 /// 本卦 === Original Hexagram
 /// 变卦 === Transformed Hexagram
@@ -202,9 +206,11 @@ enum Xiang {
 enum Hexagram {
   original("本卦", "代表了占卜问题的当前状态或者初始条件", "原始卦象"),
   transformed("变卦", "代表事物发展方向和结局", "本卦中的动爻阴阳互变"),
-  mutual("互卦", "代表事物的发展过程", "将本卦的三四五爻作为上卦，二三四爻变为下卦"),
+  mutual("互卦", "代表事物的发展过程",
+      "将本卦的三四五爻作为上卦，二三四爻变为下卦"),
   reversed("错卦", "代表转机", "将本卦的六个爻全部变为相反的爻"),
-  opposite("综卦", "代表从事物的反面来看待事物的发展", "将本卦的六个爻整个翻转形成的卦");
+  opposite("综卦", "代表从事物的反面来看待事物的发展",
+      "将本卦的六个爻整个翻转形成的卦");
 
   final String name;
   final String description;
@@ -244,8 +250,7 @@ class XiangDicItem {
   // 象的上爻
   String uppermostLine;
 
-  XiangDicItem(
-      this.name,
+  XiangDicItem(this.name,
       this.fullName,
       this.simpleDescription,
       this.originalHexagram,

@@ -11,33 +11,23 @@ class SpinningPage extends StatefulWidget {
 }
 
 class _SpinningPageState extends State<SpinningPage> {
-  late BaGuaController upController;
-
-  late BaGuaController downController;
   late List<Gua> guaList;
 
   @override
   void initState() {
     super.initState();
 
-    upController = BaGuaController(direction: Direction.down,);
-    downController = BaGuaController(direction: Direction.up);
-    guaList = [upController.getGua(), downController.getGua()];
   }
 
   @override
   void dispose() {
-    upController.dispose();
-    downController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final largeWheelSize = 200.0; // 大转盘的直径是屏幕宽度
-    final smallWheelSize = largeWheelSize / 2; // 小转盘的直径是大转盘的1/2
-    final buttonSize = 80.0;
+    const largeWheelSize = 200.0; // 大转盘的直径是屏幕宽度
+    const smallWheelSize = largeWheelSize / 2; // 小转盘的直径是大转盘的1/2
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -49,9 +39,8 @@ class _SpinningPageState extends State<SpinningPage> {
             // 大转盘
             Positioned(
               top: 20, // 大转盘的中心点在顶点
-              child: BaGuaWheelController(
+              child: BaGuaWheel(
                 size: largeWheelSize,
-                controller: upController,
                 onComplete: (Gua gua) {
                   setState(() {
                     // logger.info("当前上卦:$gua");
@@ -63,9 +52,8 @@ class _SpinningPageState extends State<SpinningPage> {
             // 小转盘
             Positioned(
               top: largeWheelSize + 60, // 小转盘放在大转盘下方
-              child: BaGuaWheelController(
+              child: BaGuaWheel(
                 size: smallWheelSize,
-                controller: downController,
                 onComplete: (Gua gua) {
                   setState(() {
                     // logger.info("当前下卦:$gua");
@@ -78,14 +66,12 @@ class _SpinningPageState extends State<SpinningPage> {
             Positioned(
               bottom: 80,
               child: SizedBox(
-                width: buttonSize,
-                height: buttonSize,
+                width: 80,
+                height: 80,
                 child: ElevatedButton(
                   onPressed: () {
-                    upController.startRotation();
-                    downController.startRotation();
                   },
-                  child: Text("摇卦"),
+                  child: Text(""),
                 ),
               ),
             ),
@@ -93,7 +79,7 @@ class _SpinningPageState extends State<SpinningPage> {
               top: largeWheelSize / 2 +
                   180 +
                   (smallWheelSize / 2) -
-                  (buttonSize / 2), // 开始按钮位于小转盘中心
+                  (80 / 2), // 开始按钮位于小转盘中心
               child: TextButton(
                 onPressed: () {
                   // Navigator.push(
