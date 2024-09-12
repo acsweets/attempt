@@ -1,7 +1,10 @@
 import 'package:attempt/attempt.dart';
 import 'package:flutter/material.dart';
+import '../../animation/draggable/draggable_gridview.dart';
 import '../../animation/pages/turnable_page.dart';
 import '../../animation/pages/two_turnable.dart';
+import '../../draw/beizier/beizier_page.dart';
+import '../../pages/tools/random_name_page.dart';
 import '../../widget/tree_nav.dart';
 
 RouteBase get appRoutes => GoRoute(
@@ -90,11 +93,47 @@ RouteBase get appRoutes => GoRoute(
                   GoRoute(
                     path: AppRoutes.example.name,
                     builder: (BuildContext context, GoRouterState state) {
-                      return Scaffold(
-                        appBar: AppBar(
-                          title: Text('例子页面'),
-                        ),
-                      );
+                      return FlowingDraggableGrid();
+                    },
+                    routes: [
+                      GoRoute(
+                        path: AppRoutes.one.name,
+                        builder: (BuildContext context, GoRouterState state) {
+                          return DragGrid();
+                        },
+                      ),
+                      GoRoute(
+                        path: AppRoutes.two.name,
+                        builder: (BuildContext context, GoRouterState state) {
+                          return SpinningPage();
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: AppRoutes.tools.name,
+                builder: (BuildContext context, GoRouterState state) {
+                  return Scaffold(
+                    body: Center(
+                      child: Container(
+                        child: Text("小工具"),
+                      ),
+                    ),
+                  );
+                },
+                routes: [
+                  GoRoute(
+                    path: AppRoutes.randomName.name,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return const RandomNamePage();
+                    },
+                  ),
+                  GoRoute(
+                    path: AppRoutes.saber.name,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return const SaberPage();
                     },
                   ),
                 ],

@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+
+import '../../utils/config.dart';
 
 class RandomNamePage extends StatefulWidget {
   const RandomNamePage({super.key});
@@ -18,17 +22,22 @@ class _RandomNamePageState extends State<RandomNamePage> {
       ),
       body: Column(
         children: [
-          Text(
+          SelectableText(
+            showCursor: true,
             name ?? '随机一下试试把',
             style: TextStyle(color: name != null ? Colors.blue : Colors.grey),
           ),
-          TextButton(onPressed: () {}, child: Text('随机名字'))
+          TextButton(onPressed: randomName, child: Text('随机名字'))
         ],
       ),
     );
   }
 
-  void randomName() {
+  final Random random = Random();
 
+  void randomName() {
+    int num = random.nextInt(Config.names.length - 1);
+    name = Config.names[num];
+    setState(() {});
   }
 }

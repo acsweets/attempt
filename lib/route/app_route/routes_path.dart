@@ -13,6 +13,9 @@ enum AppRoutes {
   one("one", "/one"),
   two("two", "/two"),
   draw("draw", "/draw"),
+  tools("tools", "/tools"),
+  randomName("randomName", "/randomName"),
+  saber("saber", "/saber"),
   ;
 
   final String name;

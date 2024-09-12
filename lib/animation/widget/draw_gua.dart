@@ -1,4 +1,4 @@
-//绘制卦盘
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../config_animation.dart';
 
 enum Direction { up, down }
-
+// 画个八卦盘
 class BaGuaPainter extends CustomPainter {
   final List<Gua> guaList;
   final Direction? direction;
