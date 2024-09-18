@@ -4,10 +4,12 @@ import '../../animation/draggable/draggable_gridview.dart';
 import '../../animation/pages/turnable_page.dart';
 import '../../animation/pages/two_turnable.dart';
 import '../../draw/beizier/beizier_page.dart';
+import '../../draw/beizier/three.dart';
 import '../../pages/tools/random_name_page.dart';
 import '../../widget/tree_nav.dart';
 
-RouteBase get appRoutes => GoRoute(
+RouteBase get appRoutes =>
+    GoRoute(
       path: AppRoutes.root.name,
       redirect: (_, state) {
         if (state.fullPath == '/') {
@@ -109,6 +111,29 @@ RouteBase get appRoutes => GoRoute(
                         },
                       ),
                     ],
+                  ),
+                  GoRoute(
+                    path: AppRoutes.cartesian.name,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return Scaffold(
+                        appBar: AppBar(
+                          title: Text('笛卡尔坐标系'),
+                        ),
+                        body: Center(
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                width: 400,
+                                height: 400,
+                                child: CustomPaint(
+                                  painter: CartesianPainter(),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

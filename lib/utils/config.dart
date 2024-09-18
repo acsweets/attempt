@@ -64,6 +64,11 @@ class Config {
               'children': [],
             },
           ],
+        },
+        {
+          'label': '卡迪尔坐标系',
+          'icon': Icons.exposure_rounded,
+          'path': '/draw/cartesian',
         }
       ],
     },

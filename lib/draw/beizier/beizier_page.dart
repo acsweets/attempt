@@ -41,12 +41,12 @@ class _SaberPageState extends State<SaberPage> {
           Container(
               width: 500,
               height: 500,
-              // child: BezierCanvas(),
               child: CustomPaint(
                 painter: CartesianPainter(
                   unitLength: 1,
                   axisColor: Colors.red,
                 ),
+                child: BezierCanvas(),
               )),
           // Center(
           //   child: Container(
@@ -205,6 +205,7 @@ class _BezierCanvasState extends State<BezierCanvas> {
   // 计算 t=0.2 时
   //第一次计算  [(0-5)*t,(0-5)*t] = [1,1]   [(5-0)*t,(5-10)*t] = [4, 6]
   // 第二次计算 [（1-4）*t, (1-6)*t ] = [1.6,2.0] 得到贝塞尔这个点
+
 
 //计算点
   Offset _calculateBezierPoint(List<Offset> points, double t) {
