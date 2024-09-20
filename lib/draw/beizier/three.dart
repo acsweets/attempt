@@ -20,7 +20,10 @@ class CartesianPainter extends CustomPainter {
     canvas.save();
     canvas.translate(size.width / 2, size.height / 2);
     Path arrowPath = Path();
+    Matrix4 matrix4 = Matrix4.identity();
+    // matrix4.scale(x);
     arrowPath.moveTo(0, -size.height / 2);
+    arrowPath.transform(matrix4.storage);
     arrowPath.lineTo(size.width / 2, 0);
     arrowPath.lineTo(0, size.height / 2);
     Paint arrowPaint = Paint()

@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 void main() {
-  calculatePoints();
+  // calculatePoints();
+  print(countSpecialNumbers(99));
 }
 
 // void startDrawingBezier() {
@@ -118,5 +119,25 @@ class Point {
   @override
   String toString() {
     return '($dx,$dy)';
+  }
+}
+
+int countSpecialNumbers(int n) {
+  int speNum = 0;
+  for (int i = 1; i <= n; i++) {
+    if (special(i)) {
+      speNum++;
+    }
+  }
+
+  return speNum;
+}
+
+bool special(int n) {
+  List<String> num = n.toString().split('');
+  if (num.length == num.toSet().toList().length) {
+    return true;
+  } else {
+    return false;
   }
 }

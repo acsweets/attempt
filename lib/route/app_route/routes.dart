@@ -5,6 +5,9 @@ import '../../animation/pages/turnable_page.dart';
 import '../../animation/pages/two_turnable.dart';
 import '../../draw/beizier/beizier_page.dart';
 import '../../draw/beizier/three.dart';
+import '../../draw/matrix/matrix_color.dart';
+import '../../draw/rule/draw_rule.dart';
+import '../../pages/tools/dropregon.dart';
 import '../../pages/tools/random_name_page.dart';
 import '../../widget/tree_nav.dart';
 
@@ -101,7 +104,7 @@ RouteBase get appRoutes =>
                       GoRoute(
                         path: AppRoutes.one.name,
                         builder: (BuildContext context, GoRouterState state) {
-                          return DragGrid();
+                          return BallDrawingCurveAnimation();
                         },
                       ),
                       GoRoute(
@@ -122,11 +125,24 @@ RouteBase get appRoutes =>
                         body: Center(
                           child: Column(
                             children: [
-                              SizedBox(
-                                width: 400,
-                                height: 400,
-                                child: CustomPaint(
-                                  painter: CartesianPainter(),
+                              // SizedBox(
+                              //   width: 400,
+                              //   height: 400,
+                              //   child: CustomPaint(
+                              //     painter: CartesianPainter(),
+                              //   ),
+                              // ),
+                              ColorFiltered(
+                                colorFilter: ColorFilter.matrix([
+                                  2, 0, 0, 0, 0, // 增强红色通道
+                                  0, 1.2, 0, 0, 0, // 增强绿色通道
+                                  0, 0, 0.5, 0, 0, // 增强蓝色通道
+                                  0, 0, 0, 1, 0,   // Alpha通道保持不变
+                                ]),
+                                child: Container(
+                                  width: 200,
+                                  height: 200,
+                                  color: Colors.lightGreenAccent, // 初始颜色
                                 ),
                               ),
                             ],

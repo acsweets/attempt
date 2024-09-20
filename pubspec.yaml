@@ -32,6 +32,9 @@ dependencies:
     sdk: flutter
   go_router: ^13.2.3
   uuid: ^4.4.2
+  #拖动文件 和平台无关的 全平台可用
+  super_drag_and_drop: ^0.8.22
+  file_picker: ^8.1.2
 
 
 
