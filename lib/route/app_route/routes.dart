@@ -7,12 +7,13 @@ import '../../draw/beizier/beizier_page.dart';
 import '../../draw/beizier/three.dart';
 import '../../draw/matrix/matrix_color.dart';
 import '../../draw/rule/draw_rule.dart';
+import '../../pages/matrix/matrix_page.dart';
 import '../../pages/tools/dropregon.dart';
 import '../../pages/tools/random_name_page.dart';
+import '../../widget/pin_inout.dart';
 import '../../widget/tree_nav.dart';
 
-RouteBase get appRoutes =>
-    GoRoute(
+RouteBase get appRoutes => GoRoute(
       path: AppRoutes.root.name,
       redirect: (_, state) {
         if (state.fullPath == '/') {
@@ -110,7 +111,9 @@ RouteBase get appRoutes =>
                       GoRoute(
                         path: AppRoutes.two.name,
                         builder: (BuildContext context, GoRouterState state) {
-                          return SpinningPage();
+                          return CarInputPage(
+                            total: 20,
+                          );
                         },
                       ),
                     ],
@@ -133,11 +136,11 @@ RouteBase get appRoutes =>
                               //   ),
                               // ),
                               ColorFiltered(
-                                colorFilter: ColorFilter.matrix([
+                                colorFilter: const ColorFilter.matrix([
                                   2, 0, 0, 0, 0, // 增强红色通道
                                   0, 1.2, 0, 0, 0, // 增强绿色通道
                                   0, 0, 0.5, 0, 0, // 增强蓝色通道
-                                  0, 0, 0, 1, 0,   // Alpha通道保持不变
+                                  0, 0, 0, 1, 0, // Alpha通道保持不变
                                 ]),
                                 child: Container(
                                   width: 200,
@@ -149,6 +152,12 @@ RouteBase get appRoutes =>
                           ),
                         ),
                       );
+                    },
+                  ),
+                  GoRoute(
+                    path: AppRoutes.matrix.name,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return MatrixPage();
                     },
                   ),
                 ],

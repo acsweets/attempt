@@ -17,6 +17,7 @@ enum AppRoutes {
   randomName("randomName", "/randomName"),
   saber("saber", "/saber"),
   cartesian("cartesian", "/cartesian"),
+  matrix("matrix","/matrix")
   ;
 
   final String name;

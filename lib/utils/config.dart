@@ -63,12 +63,22 @@ class Config {
               'path': '/draw/example/one',
               'children': [],
             },
+            {
+              'label': '案例 1',
+              'path': '/draw/example/two',
+              'children': [],
+            },
           ],
         },
         {
           'label': '卡迪尔坐标系',
           'icon': Icons.exposure_rounded,
           'path': '/draw/cartesian',
+        },
+        {
+          'label': '矩阵变换',
+          'icon': Icons.exposure_rounded,
+          'path': '/draw/matrix',
         }
       ],
     },
