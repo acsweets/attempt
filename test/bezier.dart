@@ -2,7 +2,8 @@ import 'dart:ui';
 
 void main() {
   // calculatePoints();
-  print(countSpecialNumbers(99));
+  // print(countSpecialNumbers(99));
+  print(factorial(10));
 }
 
 // void startDrawingBezier() {
@@ -141,3 +142,10 @@ bool special(int n) {
     return false;
   }
 }
+
+int factorial(int i) {
+  if (i == 1) return 1;
+  return i * factorial(i - 1);
+}
+
+

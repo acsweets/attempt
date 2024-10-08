@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' as v;
 
+import '../../draw/widget/draw_line.dart';
+import '../../draw/widget/twinkle.dart';
 import '../../widget/custorm_rander.dart';
 
 class MatrixPage extends StatefulWidget {
@@ -150,10 +152,9 @@ class _MatrixPageState extends State<MatrixPage> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text('文字'),
-              _PinputAnimatedCursor(
-                textStyle: TextStyle(color: Colors.blue),
+              TwinkleAnimated(
                 cursor: SizedBox(
-                  width:2,
+                  width: 2,
                   height: 20,
                   child: CustomPaint(
                     painter: DrawLine(),
@@ -161,7 +162,8 @@ class _MatrixPageState extends State<MatrixPage> {
                 ),
               ),
             ],
-          )
+          ),
+          ItemInPut(),
         ],
       ),
     );
@@ -204,7 +206,12 @@ class _MatrixInputState extends State<MatrixInput> {
 //只展示 传入text 有动画 有光标
 //使用定位，只需要一个控制器
 class ItemInPut extends StatefulWidget {
-  const ItemInPut({super.key});
+  final InputStatus inputStatus;
+
+  const ItemInPut({
+    super.key,
+    this.inputStatus = InputStatus.notEntered,
+  });
 
   @override
   State<ItemInPut> createState() => _ItemInPutState();
@@ -213,106 +220,43 @@ class ItemInPut extends StatefulWidget {
 class _ItemInPutState extends State<ItemInPut> {
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
+    return AnimatedSwitcher(
       duration: const Duration(seconds: 1),
-      color: Colors.blue,
-      child: const AnimatedSwitcher(
-        duration: Duration(seconds: 1),
-        child: Text(''),
+      child: widget.inputStatus == InputStatus.notEntered ? input() : Text(''),
+    );
+  }
+
+  Widget input() {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.blueAccent, width: 2)),
+      padding: const EdgeInsets.only(
+        top: 20,
+        left: 5,
+        right: 5,
+        bottom: 5,
       ),
+      child: TwinkleAnimated(
+          cursor: SizedBox(
+              width: 15,
+              height: 1,
+              child: CustomPaint(
+                painter: DrawLine(color: Colors.blue),
+              ))),
     );
   }
-}
 
-class _PinputAnimatedCursor extends StatefulWidget {
-  final Widget? cursor;
-  final TextStyle? textStyle;
-
-  const _PinputAnimatedCursor({
-    required this.textStyle,
-    required this.cursor,
-  });
-
-  @override
-  State<_PinputAnimatedCursor> createState() => _PinputAnimatedCursorState();
-}
-
-class _PinputAnimatedCursorState extends State<_PinputAnimatedCursor>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _animationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _startCursorAnimation();
-  }
-
-  void _startCursorAnimation() {
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 450),
-    );
-
-    _animationController.addStatusListener((AnimationStatus status) {
-      if (status == AnimationStatus.completed) {
-        _animationController.repeat(reverse: true);
-      }
-    });
-    _animationController.forward();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _animationController,
-      child: _PinputCursor(textStyle: widget.textStyle, cursor: widget.cursor),
-    );
+  //阶乘
+  int factorial(int i) {
+    if (i == 1) return 1;
+    return i * factorial(i - 1);
   }
 }
 
-class _PinputCursor extends StatelessWidget {
-  final Widget? cursor;
-  final TextStyle? textStyle;
-
-  const _PinputCursor({required this.textStyle, required this.cursor});
-
-  @override
-  Widget build(BuildContext context) => cursor ?? Text('|', style: textStyle);
-}
-
-class DrawLine extends CustomPainter {
-  //横线竖线长度 长度颜色
-  final Color? color;
-
-  final double? angle;
-
-  DrawLine({
-    this.color,
-    this.angle,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    //..style = PaintingStyle.stroke 空心 or fill
-    Paint paint = Paint()..color = color ?? Colors.black;
-    if (angle != null) canvas.rotate(angle!);
-    Path linePath = Path();
-    linePath.lineTo(size.width, 0);
-    linePath.lineTo(size.width, size.height);
-    linePath.lineTo(0, size.height);
-    linePath.close();
-    canvas.drawPath(linePath, paint);
-    // canvas.drawLine(const Offset(0, 0), Offset(size.width, 0), paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
-  }
+//不同的输入状态
+enum InputStatus {
+  complete,
+  wait,
+  notEntered,
 }
