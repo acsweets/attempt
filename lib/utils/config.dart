@@ -96,6 +96,11 @@ class Config {
           'label': '赛贝尔曲线可视化',
           'icon': Icons.exposure_rounded,
           'path': '/tools/saber',
+        },
+        {
+          'label': '录入题目',
+          'icon': Icons.topic,
+          'path': '/tools/inputTopic',
         }
       ],
     },
@@ -176,6 +181,3 @@ class Config {
     "bamboo grass", //- 竹草（常见的草本植物，用于编织工艺品）
   ];
 }
-
-
-

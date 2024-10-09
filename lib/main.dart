@@ -1,9 +1,14 @@
+import 'package:ac_storage/operation/database_helper.dart';
 import 'package:attempt/attempt.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
+  sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
+  DatabaseHelper().init(databaseName: 'topics');
 }
 
 class MyApp extends StatefulWidget {
