@@ -17,7 +17,8 @@ enum AppRoutes {
   randomName("randomName", "/randomName"),
   saber("saber", "/saber"),
   cartesian("cartesian", "/cartesian"),
-  matrix("matrix","/matrix")
+  matrix("matrix","/matrix"),
+  inputTopic('inputTopic','/inputTopic')
   ;
 
   final String name;

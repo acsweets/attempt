@@ -36,6 +36,11 @@ dependencies:
   super_drag_and_drop: ^0.8.22
   file_picker: ^8.1.2
   vector_math: ^2.1.4
+  ac_storage:
+    path: ../ac_plugin/ac_storage
+  sqflite_common_ffi: ^2.0.0
+  ac_widget:
+    path: ../ac_plugin/ac_widget
 
 
   # The following adds the Cupertino Icons font to your application.

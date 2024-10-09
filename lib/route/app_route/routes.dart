@@ -7,6 +7,7 @@ import '../../draw/beizier/beizier_page.dart';
 import '../../draw/beizier/three.dart';
 import '../../draw/matrix/matrix_color.dart';
 import '../../draw/rule/draw_rule.dart';
+import '../../pages/input_question/input_question.dart';
 import '../../pages/matrix/matrix_page.dart';
 import '../../pages/tools/dropregon.dart';
 import '../../pages/tools/random_name_page.dart';
@@ -111,7 +112,7 @@ RouteBase get appRoutes => GoRoute(
                       GoRoute(
                         path: AppRoutes.two.name,
                         builder: (BuildContext context, GoRouterState state) {
-                          return CarInputPage(
+                          return const CarInputPage(
                             total: 20,
                           );
                         },
@@ -184,6 +185,12 @@ RouteBase get appRoutes => GoRoute(
                     path: AppRoutes.saber.name,
                     builder: (BuildContext context, GoRouterState state) {
                       return const SaberPage();
+                    },
+                  ),
+                  GoRoute(
+                    path: AppRoutes.inputTopic.name,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return const InputQuestion();
                     },
                   ),
                 ],
