@@ -1,5 +1,3 @@
-import 'package:ac_storage/operation/database_helper.dart';
-import 'package:ac_widget/widget/input/simple_input.dart';
 import 'package:flutter/material.dart';
 
 ///  题目id 创建时间  类型 题目 答案
@@ -27,6 +25,7 @@ CREATE TABLE IF NOT EXISTS topics (
     // db();
     super.initState();
   }
+
   //
   // Future<void> db() async {
   //   var db = await DatabaseHelper().database;
@@ -42,81 +41,42 @@ CREATE TABLE IF NOT EXISTS topics (
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              Text('题目'),
-              Expanded(
-                child: SimpleInput(
-                  controller: TextEditingController(),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text('题目'),
-              Expanded(
-                child: SimpleInput(
-                  controller: TextEditingController(),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text('题目'),
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: '用户名',
-                    // 默认边框
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(
-                        color: Colors.redAccent,
-                        width: 2.0,
-                      ),
-                    ),
-                    // 启用但未聚焦时的边框
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(
-                        color: Colors.redAccent,
-                        width: 2.0,
-                      ),
-                    ),
-                    // 获取焦点时的边框
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(
-                        color: Colors.redAccent,
-                        width: 2.0,
-                      ),
-                    ),
-                    // 错误状态下的边框
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(
-                        color: Colors.redAccent,
-                        width: 2.0,
-                      ),
-                    ),
-                    // 获取焦点且错误状态下的边框
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      borderSide: BorderSide(
-                        color: Colors.redAccent,
-                        width: 2.0,
-                      ),
-                    ),
-                  ),
-                )
-              ),
-            ],
-          ),
+          // FollowPopup(
+          //   width: 100,
+          //   height: 100,
+          //   child: Container(
+          //     padding: EdgeInsets.all(10),
+          //     color: Colors.blueGrey,
+          //     child: Text('111'),
+          //   ),
+          // follow: Container(
+          //   height: 100,
+          //   width: 100,
+          //   decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(10),
+          //       color: Colors.white,
+          //       border: Border.all(color: Colors.black)),
+          // ),
+          // ),
+          // Row(
+          //   children: [
+          //     Text('题目'),
+          //     Expanded(
+          //       child: SimpleInput(
+          //         controller: TextEditingController(),
+          //       ),
+          //     ),
+          //   ],
+          // ),
 
+          // const SizedBox(
+          //   height: 300,
+          //   width: 200,
+          //   child: AcLine(),
+          // )
         ],
       ),
     );
   }
 }
+

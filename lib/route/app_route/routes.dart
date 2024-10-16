@@ -11,6 +11,7 @@ import '../../pages/input_question/input_question.dart';
 import '../../pages/matrix/matrix_page.dart';
 import '../../pages/tools/dropregon.dart';
 import '../../pages/tools/random_name_page.dart';
+import '../../pages/tools/shortcut.dart';
 import '../../widget/pin_inout.dart';
 import '../../widget/tree_nav.dart';
 
@@ -191,6 +192,12 @@ RouteBase get appRoutes => GoRoute(
                     path: AppRoutes.inputTopic.name,
                     builder: (BuildContext context, GoRouterState state) {
                       return const InputQuestion();
+                    },
+                  ),
+                  GoRoute(
+                    path: AppRoutes.shortcut.name,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return const ShortcutPage();
                     },
                   ),
                 ],

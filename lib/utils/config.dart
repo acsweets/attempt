@@ -101,6 +101,11 @@ class Config {
           'label': '录入题目',
           'icon': Icons.topic,
           'path': '/tools/inputTopic',
+        },
+        {
+          'label': '快捷键案例',
+          'icon': Icons.shortcut,
+          'path': '/tools/shortcut',
         }
       ],
     },

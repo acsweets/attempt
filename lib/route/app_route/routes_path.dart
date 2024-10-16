@@ -18,7 +18,8 @@ enum AppRoutes {
   saber("saber", "/saber"),
   cartesian("cartesian", "/cartesian"),
   matrix("matrix","/matrix"),
-  inputTopic('inputTopic','/inputTopic')
+  inputTopic('inputTopic','/inputTopic'),
+  shortcut('shortcut','/shortcut')
   ;
 
   final String name;
