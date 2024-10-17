@@ -18,7 +18,7 @@ class _RandomNamePageState extends State<RandomNamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('随机名字'),
+        title: const Text('随机名字'),
       ),
       body: Column(
         children: [
@@ -27,7 +27,7 @@ class _RandomNamePageState extends State<RandomNamePage> {
             name ?? '随机一下试试把',
             style: TextStyle(color: name != null ? Colors.blue : Colors.grey),
           ),
-          TextButton(onPressed: randomName, child: Text('随机名字'))
+          TextButton(onPressed: randomName, child: const Text('随机名字'))
         ],
       ),
     );

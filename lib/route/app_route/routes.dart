@@ -7,7 +7,7 @@ import '../../draw/beizier/beizier_page.dart';
 import '../../draw/beizier/three.dart';
 import '../../draw/matrix/matrix_color.dart';
 import '../../draw/rule/draw_rule.dart';
-import '../../pages/input_question/input_question.dart';
+import '../../pages/tools/input_question.dart';
 import '../../pages/matrix/matrix_page.dart';
 import '../../pages/tools/dropregon.dart';
 import '../../pages/tools/random_name_page.dart';

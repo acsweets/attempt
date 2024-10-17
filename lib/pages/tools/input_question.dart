@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
-///  题目id 创建时间  类型 题目 答案
+///  题目id 自增
+///  创建时间
+///  类型  下拉框解决
+///  题目  输入框
+///  答案  大型输入框
+///  写个脚本自动读取往数据库里添加
+///
+
+
 class InputQuestion extends StatefulWidget {
   const InputQuestion({super.key});
 
@@ -10,7 +18,7 @@ class InputQuestion extends StatefulWidget {
 
 class _InputQuestionState extends State<InputQuestion> {
   String topics = '''
-CREATE TABLE IF NOT EXISTS topics (
+ CREATE TABLE IF NOT EXISTS topics (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
   answer TEXT UNIQUE NOT NULL,

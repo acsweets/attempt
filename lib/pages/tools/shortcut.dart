@@ -13,7 +13,7 @@ class NextInter extends Intent {
 class PreviousInter extends Intent {
   const PreviousInter();
 }
-
+//快捷键的案例
 class ShortcutPage extends StatefulWidget {
   const ShortcutPage({super.key});
 
@@ -57,7 +57,7 @@ class _ShortcutPageState extends State<ShortcutPage> {
       ),
       body: Column(
         children: [
-          Text('Ctrl + D: 跳转到目标页面'),
+          const Text('Ctrl + D: 跳转到目标页面'),
           SizedBox(
             width: double.infinity,
             height: 200,
@@ -127,9 +127,9 @@ class DestinationPage extends StatelessWidget {
     return Scaffold(
       // 使用 AppBar 以便用户可以通过返回按钮返回上一页
       appBar: AppBar(
-        title: Text('目标页面'),
+        title: const Text('目标页面'),
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           '你已经跳转到目标页面！',
           style: TextStyle(fontSize: 24),
