@@ -26,3 +26,106 @@
 /// PdfReportBuilder、HtmlReportBuilder、ExcelReportBuilder：具体实现 ReportBuilder，负责生成不同格式的报告。
 /// ReportDirector：负责控制构建流程，比如根据用户的选择构建不同的报告部分。
 ///
+
+class Report {
+  String? titlePage;
+  String? content;
+  String? chart;
+  String? footer;
+
+  @override
+  String toString() {
+    return '''
+Report Details:
+  Title Page: ${titlePage ?? 'None'}
+  Content: ${content ?? 'None'}
+  Chart: ${chart ?? 'None'}
+  Footer: ${footer ?? 'None'}
+''';
+  }
+}
+abstract class ReportBuilder {
+  void addTitlePage(String title);
+  void addContent(String content);
+  void addChart(String chartType);
+  void addFooter(String footerInfo);
+  Report build();
+}
+
+class PdfReportBuilder implements ReportBuilder {
+  final Report _report = Report();
+
+  @override
+  void addTitlePage(String title) {
+    _report.titlePage = 'PDF Title: $title';
+  }
+
+  @override
+  void addContent(String content) {
+    _report.content = 'PDF Content: $content';
+  }
+
+  @override
+  void addChart(String chartType) {
+    _report.chart = 'PDF Chart Type: $chartType';
+  }
+
+  @override
+  void addFooter(String footerInfo) {
+    _report.footer = 'PDF Footer: $footerInfo';
+  }
+
+  @override
+  Report build() {
+    return _report;
+  }
+}
+
+class HtmlReportBuilder implements ReportBuilder {
+  final Report _report = Report();
+
+  @override
+  void addTitlePage(String title) {
+    _report.titlePage = 'HTML Title: $title';
+  }
+
+  @override
+  void addContent(String content) {
+    _report.content = 'HTML Content: $content';
+  }
+
+  @override
+  void addChart(String chartType) {
+    _report.chart = 'HTML Chart Type: $chartType';
+  }
+
+  @override
+  void addFooter(String footerInfo) {
+    _report.footer = 'HTML Footer: $footerInfo';
+  }
+
+  @override
+  Report build() {
+    return _report;
+  }
+}
+
+
+class ReportDirector {
+  final ReportBuilder _builder;
+
+  ReportDirector(this._builder);
+
+  Report createFullReport(String title, String content, String chartType, String footerInfo) {
+    _builder.addTitlePage(title);
+    _builder.addContent(content);
+    _builder.addChart(chartType);
+    _builder.addFooter(footerInfo);
+    return _builder.build();
+  }
+
+  Report createMinimalReport(String content) {
+    _builder.addContent(content);
+    return _builder.build();
+  }
+}
