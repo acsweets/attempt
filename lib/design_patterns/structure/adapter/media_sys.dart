@@ -86,6 +86,6 @@ void main() {
   // audioPlayer.play("vlc", "movie.vlc");
   // audioPlayer.play("avi", "random.avi");
 
-  double a = 1600 * 7 - 7800;  // 14斤
+  double a = 5 * 12.5 * 7;  // 14斤
   print(a);
 }
