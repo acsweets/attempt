@@ -1,6 +1,7 @@
 import 'package:attempt/todo/db/app_db.dart';
 import 'package:flutter/material.dart';
 
+
 class CreateTodoPage extends StatefulWidget {
   const CreateTodoPage({super.key});
 
@@ -17,13 +18,29 @@ class _CreateTodoPageState extends State<CreateTodoPage> {
       // ),
       body: Column(
         children: [
-          ///标题，是否必传，提示文字 横纵布局 默认横向
+          ///标题，是否必传，提示文字 横纵布局 默认横向 描述
           Text(''),
 
           ///时间选择组件
+          Container(
+            color: Colors.white,
+            height: 100,
+            child: const TextField(
+              style: TextStyle(fontSize: 14),
+              cursorWidth: 1,
+              expands: true,
+              maxLines: null,
+              decoration: InputDecoration(
+                isCollapsed: true,
+                //无边框
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.symmetric(horizontal: 12),
+              ),
+            ),
+          ),
+
           ///下拉框
           ///按钮  风格一直
-
           TextButton(
             style: TextButton.styleFrom(
                 backgroundColor: Colors.blue,
@@ -44,7 +61,7 @@ class _CreateTodoPageState extends State<CreateTodoPage> {
     AppDB().insertTask({
       'title': '学英语',
       'dueDate': '2024-10-21',
-      'isRecurring':1,
+      'isRecurring': 1,
       'status': 'pending'
     });
     // List task = await AppDB().getAllTasks();

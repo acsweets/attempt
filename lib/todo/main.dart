@@ -1,6 +1,7 @@
 import 'package:attempt/main.dart';
 import 'package:attempt/todo/db/app_db.dart';
 import 'package:attempt/todo/pages/create/page.dart';
+import 'package:attempt/todo/pages/list/page.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -28,7 +29,7 @@ class _TodoAppState extends State<TodoApp> {
           title: Text('todo'),
 
         ),
-        body: CreateTodoPage(),
+        body: TaskListPage(),
       ),
 
     );

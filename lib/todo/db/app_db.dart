@@ -98,4 +98,12 @@ class AppDB {
       whereArgs: [id],
     );
   }
+
+  ///分页查询 limit 条数     offset 定位
+  Future<List<Map<String, dynamic>>> getPaginatedTasks(
+      Database db, int limit, int offset) async {
+    return await db.rawQuery('''
+    SELECT * FROM tasks ORDER BY id LIMIT ? OFFSET ?
+    ''', [limit, offset]);
+  }
 }
