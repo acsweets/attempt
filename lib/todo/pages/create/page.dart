@@ -21,6 +21,8 @@ class _CreateTodoPageState extends State<CreateTodoPage> {
           ///标题，是否必传，提示文字 横纵布局 默认横向 描述
           Text(''),
 
+
+
           ///时间选择组件
           Container(
             color: Colors.white,
@@ -39,7 +41,10 @@ class _CreateTodoPageState extends State<CreateTodoPage> {
             ),
           ),
 
-          ///下拉框
+          ///下拉框  类型 修改时修改状态
+
+
+
           ///按钮  风格一直
           TextButton(
             style: TextButton.styleFrom(

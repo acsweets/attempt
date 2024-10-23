@@ -1,12 +1,16 @@
+import '../unit/enum.dart';
+
 class Task {
   final int? id;
   final String title;
+  final String? describe;
   final DateTime data;
-  final String status;
+  final TodoState status;
   final bool repeat;
 
   Task({
     this.id,
+    this.describe,
     required this.title,
     required this.data,
     required this.status,
@@ -18,7 +22,8 @@ class Task {
         id: 0,
         title: '',
         data: DateTime.fromMicrosecondsSinceEpoch(1),
-        status: '',
+        status: TodoState.fromString(map['status']),
+        describe: map['map'],
         repeat: false);
   }
 
@@ -28,5 +33,6 @@ class Task {
         'data': data.toString(),
         'status': status,
         'repeat': repeat ? 1 : 0,
+        'describe': describe
       };
 }

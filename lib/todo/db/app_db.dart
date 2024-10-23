@@ -107,3 +107,4 @@ class AppDB {
     ''', [limit, offset]);
   }
 }
+
