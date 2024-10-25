@@ -50,7 +50,7 @@ class Novel extends Book {
 }
 
 class TechnicalBook extends Book {
-  TechnicalBook(String title, Bookshelf bookshelf) : super(title, bookshelf);
+  TechnicalBook(super.title, super.bookshelf);
 
   @override
   void putOnShelf() {
