@@ -1,4 +1,5 @@
 enum TodoState {
+  notStarted('notStarted'),
   beOverdue('beOverdue'), //过期
   pending('pending'), //进行中
   completed('completed'); //完成

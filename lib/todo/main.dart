@@ -29,12 +29,10 @@ class _TodoAppState extends State<TodoApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('todo'),
-
+          title: const Text('我的日常任务'),
         ),
-        body: WarpCounterWidget(),
+        body: const ToDoListPage(),
       ),
-
     );
   }
 }

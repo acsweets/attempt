@@ -27,8 +27,9 @@ class AppDB {
         CREATE TABLE IF NOT EXISTS tasks(
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           title TEXT NOT NULL,
-          dueDate TEXT NOT NULL,
-          isRecurring INTEGER NOT NULL,
+          describe TEXT NOT NULL,
+          data TEXT NOT NULL,
+          repeat INTEGER NOT NULL,
           status TEXT NOT NULL
         )
       ''');

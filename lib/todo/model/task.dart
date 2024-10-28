@@ -4,7 +4,7 @@ class Task {
   final int? id;
   final String title;
   final String? describe;
-  final DateTime data;
+  final String data;
   final TodoState status;
   final bool repeat;
 
@@ -19,12 +19,12 @@ class Task {
 
   factory Task.formMap(Map<String, dynamic> map) {
     return Task(
-        id: 0,
-        title: '',
-        data: DateTime.fromMicrosecondsSinceEpoch(1),
+        id: map['id'],
+        title: map['title'],
+        data: map['data'],
         status: TodoState.fromString(map['status']),
-        describe: map['map'],
-        repeat: false);
+        describe: map['describe'],
+        repeat: analysisNumber(map['repeat']));
   }
 
   Map toJson() => {
@@ -35,4 +35,20 @@ class Task {
         'repeat': repeat ? 1 : 0,
         'describe': describe
       };
+
+  static bool analysisNumber(int number) {
+    if (number == 1) {
+      return true;
+    }
+    return false;
+  }
+
+  static int  analysisInt(bool boer) {
+    if (boer) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
 }
