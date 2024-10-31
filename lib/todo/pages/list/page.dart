@@ -1,5 +1,7 @@
+import 'package:ac_tools/ac_tools.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/api.dart';
 import '../../model/task.dart';
 
 /// 加一个倒计时，打卡，开始上班了 距离下班还有XX：XX 多久  《自己设置》
@@ -42,7 +44,17 @@ class _ToDoListPageState extends State<ToDoListPage> {
               itemCount: 30, // 多一项用于显示加载指示器
               itemBuilder: (context, index) {
                 // 显示任务列表项
-                return Container();
+                return GestureDetector(
+                    onTap: () async {
+                      // BotToast.showText(text: "xxxx");
+                      var data = await HttpManger.instance
+                          .post(Api.word, queryParameters: {'m': 'json'});
+                      Log.i(data.data.toString());
+                    },
+                    child: Container(
+                      height: 20,
+                      color: Colors.blue,
+                    ));
               },
             ),
           ),
@@ -59,7 +71,6 @@ class _ToDoListPageState extends State<ToDoListPage> {
       ),
     );
   }
-
 
   /// 标题，状态  类型 时间 描述
   Widget itemTask(Task task) {
